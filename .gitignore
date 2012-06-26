@@ -1,0 +1,5 @@
+*.pyc
+settings.py
+app_settings.py
+*.db
+*.tar.gz

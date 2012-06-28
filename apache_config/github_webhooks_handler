@@ -7,4 +7,12 @@
     Allow from all
     </Files>
     </Directory>
+
+    # Note that a link must be made to the admin/media directory first,
+    # otherwise the admin media will not be available (i.e., no
+    # formatting on admin page).
+    #    e.g.,
+    #        mkdir media
+    #        ln -s `import os; import django; print os.path.join(os.path.dirname(django.__file__), 'contrib', 'admin', 'media')` media/admin
+    Alias /media/ <abs/path/to>/github_webhooks_handler/media/
 </VirtualHost>

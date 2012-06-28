@@ -1,12 +1,14 @@
 from django.conf.urls.defaults import *
 
 import webhooks.views
+from webhooks.models import WebHookRequest
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 
 
 admin.autodiscover()
+admin.site.register(WebHookRequest)
 
 urlpatterns = patterns('',
     # Example:

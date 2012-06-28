@@ -1,0 +1,23 @@
+repositories_by_name = {
+    'vpr': 'https://github.com/gwg-placement-ga/vpr-v5-mod',
+    'experiments': 'https://github.com/gwg-placement-ga/pyvpr_experiments',
+    'job_manager': 'https://github.com/cfobel/job_manager',
+}
+
+name_by_repository = dict([(v, k) for k, v in repositories_by_name.items()])
+
+commands = {
+    'vpr': ['pull_vpr', 'build_vpr'],
+    'experiments': ['pull_experiments'],
+    'job_manager': ['pull_job_manager'],
+}
+
+
+def valid_repos():
+    names = set(repositories_by_name.keys()).intersection(set(commands.keys()))
+    return [repositories_by_name[name] for name in names]
+
+
+key_file = '/home/coalition/.ssh/id_rsa'
+fab_script = '/home/coalition/git_update.py' 
+hosts = 'coalition@tobias.socs.uoguelph.ca,cfobel@kraken.sharcnet.ca'

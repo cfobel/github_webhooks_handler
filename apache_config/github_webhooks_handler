@@ -1,0 +1,10 @@
+<VirtualHost *:8080>
+    WSGIScriptAlias / <abs/path/to>/github_webhooks_handler/wsgi.py
+
+    <Directory <abs/path/to>/github_webhooks_handler>
+    <Files wsgi.py>
+    Order deny,allow
+    Allow from all
+    </Files>
+    </Directory>
+</VirtualHost>

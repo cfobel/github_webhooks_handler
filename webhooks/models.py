@@ -1,4 +1,4 @@
-from subprocess import Popen, PIPE, check_output
+from subprocess import Popen, PIPE, check_output, CalledProcessError
 
 import json
 from django.db import models
@@ -50,9 +50,13 @@ class WebHookRequest(models.Model):
         self.save()
         repo = self.parse_repo(self.json_string)
         if repo:
-            self.git_update(repo, key_file=getattr(app_settings, 'key_file',
-                    None))
-            self.error = False
+            try:
+                self.git_update(repo, key_file=getattr(app_settings, 'key_file',
+                        None))
+            except CalledProcessError:
+                self.error = True
+            else:
+                self.error = False
         else:
             self.error = True
         self.processed = True
